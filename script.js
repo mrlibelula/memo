@@ -1,4 +1,4 @@
-var deck, category, dificulty;
+var deck, category, dificulty, turn;
 /* ************************************************************************************ */
 // Config here:
 category = 'brands';  // Available: brands
@@ -8,6 +8,10 @@ dificulty = 1;  // 1 = Easy | 2 = Medium | 3 = Hard
 init();
 log();
 
+// Test
+deal();
+
+
 /* ************************************************************************************ */
 
 function init() {
@@ -15,13 +19,30 @@ function init() {
   initBoard();        // Prepares the main board set (according to difficulty)
 }
 
+function deal() {
+  var id = 0;
+  var placed_cards = '';
+  deck.forEach(icon => {
+    placed_cards += card(deck[id], id);
+    id++;
+  });
+  document.querySelector('.deck').innerHTML = placed_cards;
+}
+
+function card(icon, id) {
+  return '<input type="checkbox" id="card-' + id + '" value="card-' + id + '"><u><i class="fab fa-' + icon + '"></i>' + icon.toUpperCase() + '</u><b></b>';
+}
+
 function initBoard() {
   // Easy = [6 x 6] | Medium = [12 x 12] | Hard = [18 x 18]
   // Board will be created according the difficulty
+  // initBoard means: 
+  //      Set dificulty (number of cards) for the deck. 
+  //      Set shuffled random deck (from 427 FA figures)
 
   var set_dificulty = dificulty >= 1 || dificulty <= 3 ? dificulty : 1;
 
-  // Get 'x' pair of cards randomly (where x= 18 if dificulty = 1)
+  // Get 'x' pair of cards randomly (where x = 18 if dificulty = 1)
   var rows = 6 * set_dificulty;
   var cols = 6 * set_dificulty;
   var baraja1 = [], baraja2 = [];
@@ -40,18 +61,6 @@ function initBoard() {
     deck = shuffle(deck);       // Final tripple-shuffled deck ready for game :)
   }
 
-  // Draw the board
-  var a = 0;
-  var lista = '';
-  for(var row = 0; row < rows; row++) {
-    for(var col = 0; col < cols; col++) {
-      lista += '<i class="fab fa-' + deck[a] + '"></i><br>';
-      a++;
-    }
-  }
-
-  // document.getElementById('board').innerHTML = lista;
-
 }
 
 function shuffle(a) {
@@ -64,18 +73,6 @@ function shuffle(a) {
   }
   return a;
 }
-
-// function pickCard() {
-//     var card = {};
-//     var rand_card = deck[Math.floor(Math.random() * (deck.length))];
-//     if(!picked_cards.includes(rand_card)) {
-//         picked_cards.push(card.fa_value);
-//         card.html_icon = '<i class="fab fa-' + card.fa_value + '"></i>';
-//         return card;
-//     } else {
-
-//     }
-// }
 
 function getDeck() {
   if(category === 'brands') {

@@ -14,19 +14,18 @@ body {
   
   .table {
     position: relative;
-    /* width: 650px; */
-    /* height: 480px; */
     width: 100%;
     height: 100%;
-    background: #8f0222;
+    /* background: #8f0222; */
     background: linear-gradient(#a90329, #8f0222, #6d0019);
-    margin: 0 auto;
-    padding: 18px 18px 30px;
+    margin: 37px auto;
+    padding: 38px 18px 30px;
     display: table;
     line-height: 0;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     box-sizing: border-box;
-    box-shadow: 1px 1px 4px 1px rgba(255, 250, 255, .5) inset, -1px -1px 4px 1px #002 inset, 3px 3px 80px 15px #000;
+    /* box-shadow: 1px 1px 4px 1px rgba(255, 250, 255, .5) inset, -1px -1px 4px 1px #002 inset, 3px 3px 80px 15px #000; */
+    
   }
   
   .deck {
@@ -68,7 +67,7 @@ body {
   /* --- FRONT CONTENT --- */
   
   .deck>u {
-    font: bold 11px/1 Arial, Helvetica, sans-serif;
+    font: bold 8px/1 Arial, Helvetica, sans-serif;
     color: #148;
     background: #f8fff9;
     text-decoration: none;
@@ -92,11 +91,18 @@ body {
     margin: 5px auto 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    background: #fff;
-    background: linear-gradient(#fcfcff, #fff 5%, #fbfbfe 65%, #f3f3f5 100%);
-    font-size: 4rem;
+    /* background: #fff; */
+    /* background: linear-gradient(#fcfcff, #fff 5%, #fbfbfe 65%, #f3f3f5 100%); */
+  
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(45deg, rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    
+    font-size: 3rem;
     font-weight: lighter;
-    padding-top:  0.8rem;
+    padding-top: 0.8rem;
   }
   
   .deck>u>c {
@@ -110,7 +116,7 @@ body {
   
   .deck>b {
     background: #ebe119;
-    background: linear-gradient(black, #25CCF7);
+    background: linear-gradient(rgb(0, 0, 0), #25CCF7);
     border: 5px solid #f8fff9;
     box-sizing: border-box;
   }
@@ -125,7 +131,7 @@ body {
     top: 0;
     bottom: 0;
     background: url('https://lumarbros.com/lmb19/wp-content/uploads/2019/04/logo_libesoft.png') top/72px;
-  /* background: url('http://www.feltex.com.br/felix/wp-content/uploads/2014/03/Projeto.png') center/36px; */
+    /* background: url('http://www.feltex.com.br/felix/wp-content/uploads/2014/03/Projeto.png') center/36px; */
     border-radius: inherit;
     opacity: .35;
   }
@@ -220,3 +226,103 @@ body {
     }
   }
   
+
+/* NAVBAR */
+#custom-container {
+  margin-top: 6px;
+}
+
+.brand {
+  /* margin-left: 8px; */
+  margin-right: 10px;
+  text-transform: uppercase;
+  /* font-size: 0.8rem; */
+  /* font-family: 'Macondo Swash Caps', cursive; */
+  /* font-family: 'Sniglet', cursive; */
+  /* font-family: 'Press Start 2P', cursive; */
+  font-family: 'Rammetto One', cursive;
+  /* font-weight: bolder; */
+  font-size: 1.5rem;
+  
+  /* background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3); */
+
+  background: rgb(255,179,246);
+  background: linear-gradient(90deg, #fff8dc, rgba(245,232,234,1) 50%, rgba(169,110,123,1) 100%);
+  
+
+
+  background-size: 1800% 1800%;
+
+  -webkit-animation: rainbow 3s ease infinite;
+  -z-animation: rainbow 3s ease infinite;
+  -o-animation: rainbow 3s ease infinite;
+  animation: rainbow 3s ease infinite;
+
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+
+}
+
+.brand0 {
+  margin-left: 8px;
+  /* margin-right: 10px; */
+  text-transform: uppercase;
+  font-family: 'Rammetto One', cursive;
+  font-size: 1.5rem;
+  color: cornsilk;
+}
+
+
+#custom-link {
+  /* font-size: 0.8rem; */
+  /* font-family: 'Macondo Swash Caps', cursive; */
+  /* font-family: 'Sniglet', cursive; */
+  /* font-family: 'Press Start 2P', cursive; */
+  font-family: 'Rammetto One', cursive;
+  color: cornsilk;
+  margin-left: 5px;
+  margin-right: 5px;
+  
+}
+
+#custom-link:hover {
+  background-color: black;
+}
+
+#custom-navbar {
+  /* background-color:black; */
+  margin-top: -6px;
+
+  background: rgb(169,3,41); /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 );
+  
+}
+
+#avatar {
+  font-size: 1.5rem;
+}
+
+
+@-webkit-keyframes rainbow {
+  0%{background-position:0% 82%}
+  50%{background-position:100% 19%}
+  100%{background-position:0% 82%}
+}
+@-moz-keyframes rainbow {
+  0%{background-position:0% 82%}
+  50%{background-position:100% 19%}
+  100%{background-position:0% 82%}
+}
+@-o-keyframes rainbow {
+  0%{background-position:0% 82%}
+  50%{background-position:100% 19%}
+  100%{background-position:0% 82%}
+}
+@keyframes rainbow { 
+  0%{background-position:0% 82%}
+  50%{background-position:100% 19%}
+  100%{background-position:0% 82%}
+}
