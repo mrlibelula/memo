@@ -1,18 +1,82 @@
-var deck, category, dificulty, turn;
+var deck, category, dificulty;
+var cards_flipped = [];
+var matches = [];
 /* ************************************************************************************ */
 // Config here:
 category = 'brands';  // Available: brands
 dificulty = 1;  // 1 = Easy | 2 = Medium | 3 = Hard
 /* ************************************************************************************ */
-// Main
+// Init
 init();
 log();
 
-// Test
+// Start Game
 deal();
 
 
 /* ************************************************************************************ */
+//  GAME FUNCTIONS
+/* ************************************************************************************ */
+
+function action(card_id) {
+  var this_card = document.getElementById('card-' + card_id);
+  // console.log('CARD ID: ', card_id);
+  if(this_card.checked == true) {    
+    // Check if other card is flipped
+    if(cards_flipped.length != 0) {
+      // One is flipped, compare and lock other cards
+      disableDeck([cards_flipped[0], card_id]); // Disable entire deck, except the two cards in question
+      if(deck[cards_flipped[0]] === deck[card_id]) {
+        // MATCH!, win points!, and both cards stay opened and locked
+        matches.push(cards_flipped[0], card_id);
+        enableDeck();
+        cards_flipped = [];
+      } else {
+        // NO MATCH!!, reset cards, close them if not match
+        var last_id = cards_flipped[0];
+        
+        setTimeout(function() {
+          document.getElementById('card-' + card_id).click(); // Closes card 1
+          document.getElementById('card-' + last_id).click(); // Closes card 2
+          enableDeck();
+        }, 1200);
+        
+        // Minus one chance
+        
+        cards_flipped = [];
+      }
+    } else {
+      // None flipped, this is the first one
+      cards_flipped.push(card_id);
+    }
+  }
+}
+
+function enableDeck() {
+  // Enable all cards except the ones that are already matched
+  if(matches.length != 0) {
+    deck.forEach(function(card_name, card_id) {
+      if(!matches.includes(card_id)) {
+        document.getElementById('card-' + card_id).disabled = false;
+      } else {
+        document.getElementById('card-' + card_id).disabled = true;
+      }
+    });
+  } else {
+    // Enable ALL
+    deck.forEach(function(card_name, card_id) {
+      document.getElementById('card-' + card_id).disabled = false;
+    });
+  }
+}
+
+function disableDeck(except) {
+  deck.forEach(function(card_name, card_id) {
+    if(!except.includes(card_id)) {
+      document.getElementById('card-' + card_id).disabled = true;
+    }
+  });
+}
 
 function init() {
   getDeck();          // Picks the selected deck (according to category)
@@ -30,7 +94,7 @@ function deal() {
 }
 
 function card(icon, id) {
-  return '<input type="checkbox" id="card-' + id + '" value="card-' + id + '"><u><i class="fab fa-' + icon + '"></i>' + icon.toUpperCase() + '</u><b></b>';
+  return '<input type="checkbox" onclick="action(' + id + ')" id="card-' + id + '" value="card-' + id + '"><u><i class="fab fa-' + icon + '"></i>' + icon.toUpperCase() + '</u><b></b>';
 }
 
 function initBoard() {
@@ -43,8 +107,8 @@ function initBoard() {
   var set_dificulty = dificulty >= 1 || dificulty <= 3 ? dificulty : 1;
 
   // Get 'x' pair of cards randomly (where x = 18 if dificulty = 1)
-  var rows = 6 * set_dificulty;
-  var cols = 6 * set_dificulty;
+  var rows = 4 * set_dificulty;
+  var cols = 4 * set_dificulty;
   var baraja1 = [], baraja2 = [];
 
   // Shuffle the deck and push the given card to the 'deck' array
@@ -63,15 +127,15 @@ function initBoard() {
 
 }
 
-function shuffle(a) {
+function shuffle(arr) {
   var j, x, i;
-  for(i = a.length - 1; i > 0; i--) {
+  for(i = arr.length - 1; i > 0; i--) {
     j = Math.floor(Math.random() * (i + 1));
-    x = a[i];
-    a[i] = a[j];
-    a[j] = x;
+    x = arr[i];
+    arr[i] = arr[j];
+    arr[j] = x;
   }
-  return a;
+  return arr;
 }
 
 function getDeck() {
