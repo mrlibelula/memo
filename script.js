@@ -1,10 +1,10 @@
-var deck, category, dificulty;
+var deck, category, dificulty, hits = 0;
 var cards_flipped = [];
 var matches = [];
 /* ************************************************************************************ */
 // Config here:
 category = 'brands';  // Available: brands
-dificulty = 1;  // 1 = Easy | 2 = Medium | 3 = Hard
+dificulty = 2;  // 1 = Easy | 2 = Medium | 3 = Hard
 /* ************************************************************************************ */
 // Init
 init();
@@ -12,7 +12,6 @@ log();
 
 // Start Game
 deal();
-
 
 /* ************************************************************************************ */
 //  GAME FUNCTIONS
@@ -28,6 +27,7 @@ function action(card_id) {
       disableDeck([cards_flipped[0], card_id]); // Disable entire deck, except the two cards in question
       if(deck[cards_flipped[0]] === deck[card_id]) {
         // MATCH!, win points!, and both cards stay opened and locked
+        hits++;
         matches.push(cards_flipped[0], card_id);
         enableDeck();
         cards_flipped = [];
@@ -36,10 +36,13 @@ function action(card_id) {
         var last_id = cards_flipped[0];
         
         setTimeout(function() {
+          document.getElementById('card-' + last_id).disabled = false;
+          document.getElementById('card-' + card_id).disabled = false;
+
           document.getElementById('card-' + card_id).click(); // Closes card 1
           document.getElementById('card-' + last_id).click(); // Closes card 2
           enableDeck();
-        }, 1200);
+        }, 1500);
         
         // Minus one chance
         
@@ -48,8 +51,14 @@ function action(card_id) {
     } else {
       // None flipped, this is the first one
       cards_flipped.push(card_id);
+      document.getElementById('card-' + card_id).disabled = true;
     }
   }
+  printScore();
+}
+
+function printScore() {
+  document.querySelector('.score').textContent = hits;
 }
 
 function enableDeck() {
@@ -94,7 +103,7 @@ function deal() {
 }
 
 function card(icon, id) {
-  return '<input type="checkbox" onclick="action(' + id + ')" id="card-' + id + '" value="card-' + id + '"><u><i class="fab fa-' + icon + '"></i>' + icon.toUpperCase() + '</u><b></b>';
+  return '<input type="checkbox" onclick="action(' + id + ')" id="card-' + id + '"><u><i class="fab fa-' + icon + '"></i>' + icon.toUpperCase() + '</u><b></b>';
 }
 
 function initBoard() {
@@ -124,6 +133,8 @@ function initBoard() {
   for(var s = 0; s < 2; s++) {
     deck = shuffle(deck);       // Final tripple-shuffled deck ready for game :)
   }
+
+  printScore();
 
 }
 

@@ -15,7 +15,7 @@ body {
   .table {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     /* background: #8f0222; */
     background: linear-gradient(#a90329, #8f0222, #6d0019);
     margin: 37px auto;
@@ -25,7 +25,13 @@ body {
     /* border-radius: 15px; */
     box-sizing: border-box;
     /* box-shadow: 1px 1px 4px 1px rgba(255, 250, 255, .5) inset, -1px -1px 4px 1px #002 inset, 3px 3px 80px 15px #000; */
-    
+
+    /* background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/fs/3ac95250356645.58d023ba56d89.jpg"); */
+    /* background-image: url("https://steamuserimages-a.akamaihd.net/ugc/859487850041602021/84AE6980846B4C1D5143C5A84F24D261D58E38FE/"); */
+
+    background-image: url("http://www.sclance.com/backgrounds/red-velvet-background/red-velvet-background_1901809.jpg");
+   
+    /* background-attachment: fixed; */
   }
   
   .deck {
@@ -48,6 +54,7 @@ body {
     z-index: 999;
     cursor: pointer;
     opacity: 0;
+    
   }
   
   .deck>u,
@@ -103,6 +110,8 @@ body {
     font-size: 3rem;
     font-weight: lighter;
     padding-top: 0.8rem;
+
+    
   }
   
   .deck>u>c {
@@ -134,6 +143,7 @@ body {
     /* background: url('http://www.feltex.com.br/felix/wp-content/uploads/2014/03/Projeto.png') center/36px; */
     border-radius: inherit;
     opacity: .35;
+    
   }
   
   .deck>b::after {
@@ -266,7 +276,7 @@ body {
 .brand0 {
   margin-left: 8px;
   /* margin-right: 10px; */
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-family: 'Rammetto One', cursive;
   font-size: 1.5rem;
   color: cornsilk;
@@ -299,6 +309,9 @@ body {
   background: linear-gradient(to bottom, rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 );
   
+  -webkit-box-shadow: 0px 5px 19px 8px rgba(36,36,36,0.75);
+-moz-box-shadow: 0px 5px 19px 8px rgba(36,36,36,0.75);
+box-shadow: 0px 5px 19px 8px rgba(36,36,36,0.75);
 }
 
 #avatar {
@@ -325,4 +338,11 @@ body {
   0%{background-position:0% 82%}
   50%{background-position:100% 19%}
   100%{background-position:0% 82%}
+}
+
+.score {
+  color:white;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  font-family: 'Nova Square', cursive;
 }
