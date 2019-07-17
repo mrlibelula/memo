@@ -20,12 +20,12 @@ deal();
 
 function action(card_id) {
   var this_card = document.getElementById('card-' + card_id);
-  // console.log('CARD ID: ', card_id);
+
   if(this_card.checked == true) {    
     // Check if other card is flipped
     if(cards_flipped.length != 0) {
       // One is flipped, compare and lock other cards
-      disableDeck([cards_flipped[0], card_id]); // Disable entire deck, except the two cards in question
+      disableDeck([cards_flipped[0], card_id]); // Disable entire deck, ([except]) the two cards in question, will need to close them if no match found
       tries++;
       if(deck[cards_flipped[0]] === deck[card_id]) {
         // MATCH!, win points!, and both cards stay opened and locked
@@ -35,6 +35,21 @@ function action(card_id) {
         calcScore();
         printScore();
         cards_flipped = [];
+
+        // Check if game over
+        if(hits === deck.length / 2) {
+          // WON the game... game over
+          var finalScore = '<i style="color: deeppink" class="fas fa-brain"></i>&nbsp;&nbsp;Aciertos: <span id="mod-puntos">'+ hits +'</span><br>💯 Puntos: <span id="mod-puntos">' + score + '</span><br>👀 Intentos: <span id="mod-puntos">' + tries + '</span><br>🚣 Efectividad: <span id="mod-puntos">' + efficiency().toFixed(2) + '%</span>';
+
+          if(dificulty === 3) {
+            document.getElementById('btn-diff').style.display = 'none';
+          }
+          document.querySelector('.mod-score').innerHTML = finalScore;
+          setTimeout(() => {
+            document.getElementById('message').click();  
+          }, 800);
+        }
+        
       } else {
         // NO MATCH!!, reset cards, close them if not match
         var last_id = cards_flipped[0];
@@ -62,7 +77,7 @@ function action(card_id) {
 }
 
 function printScore() {
-  var str = '<i class="fas fa-brain"></i>&nbsp;' + hits + '&nbsp;&nbsp; 💯&nbsp;' + score + '&nbsp;&nbsp; 👀&nbsp;' + tries + '&nbsp;&nbsp;🚣&nbsp;' + efficiency().toFixed(2) + '%';
+  var str = '<i style="color: deeppink" class="fas fa-brain"></i>&nbsp;' + hits + '&nbsp;&nbsp; 💯&nbsp;' + score + '&nbsp;&nbsp; 👀&nbsp;' + tries + '&nbsp;&nbsp;🚣&nbsp;' + efficiency().toFixed(2) + '%';
   document.querySelector('.score').innerHTML = str;
 }
 
@@ -74,11 +89,7 @@ function enableDeck() {
   // Enable all cards except the ones that are already matched
   if(matches.length != 0) {
     deck.forEach(function(card_name, card_id) {
-      if(!matches.includes(card_id)) {
-        document.getElementById('card-' + card_id).disabled = false;
-      } else {
-        document.getElementById('card-' + card_id).disabled = true;
-      }
+      document.getElementById('card-' + card_id).disabled = !matches.includes(card_id) ? false : true;
     });
   } else {
     // Enable ALL
@@ -122,7 +133,7 @@ function initBoard() {
   // Board will be created according the difficulty
   // initBoard means: 
   //      Set dificulty (number of cards) for the deck. 
-  //      Set shuffled random deck (from 427 FA figures)
+  //      Set shuffled random deck (from 427 FA figures [brands])
 
   var set_dificulty = dificulty >= 1 || dificulty <= 3 ? dificulty : 1;
   var brains = document.getElementById('diff');
@@ -192,6 +203,9 @@ function reLoad() {
   hits = 0, tries = 0, score = 0;
   cards_flipped = [];
   matches = [];
+
+  // Hide modals
+  document.getElementById('btn-close').click();
 
   init();
   log();
