@@ -39,7 +39,7 @@ function action(card_id) {
         // Check if game over
         if(hits === deck.length / 2) {
           // WON the game... game over
-          var finalScore = '<i style="color: deeppink" class="fas fa-brain"></i>&nbsp;&nbsp;Aciertos: <span id="mod-puntos">'+ hits +'</span><br>💯 Puntos: <span id="mod-puntos">' + score + '</span><br>👀 Intentos: <span id="mod-puntos">' + tries + '</span><br>🚣 Efectividad: <span id="mod-puntos">' + efficiency().toFixed(2) + '%</span>';
+          var finalScore = '<i style="color: deeppink" class="fas fa-brain"></i>&nbsp;&nbsp;Hits: <span id="mod-puntos">'+ hits +'</span><br>💯 Points: <span id="mod-puntos">' + score + '</span><br>👀 Tries: <span id="mod-puntos">' + tries + '</span><br>🚣 Effectiveness: <span id="mod-puntos">' + efficiency().toFixed(2) + '%</span>';
 
           if(dificulty === 3) {
             document.getElementById('btn-diff').style.display = 'none';
