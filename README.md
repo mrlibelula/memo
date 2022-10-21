@@ -8,7 +8,3 @@ Script generates a random deck, made from FontAwesome cool 'brand' free icons (4
 CSS3 animations, responsive template and menu.
 JS DOM manipulation, OOP algorithms, events and customizable variables.
 
-Live demo: https://lumarbros.com/memo/
-
-
-![](https://lumarbros.com/memo/images/screenshot.png)
